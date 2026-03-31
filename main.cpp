@@ -8,6 +8,7 @@ using namespace std;
 
 void addBook()
 {
+    cin.ignore();
     string BookName,author;
     ofstream library;
     library.open("library.txt", ios::app);
@@ -16,12 +17,15 @@ void addBook()
     cout<<"Add the Author name : ";
     cin>>author;
 
+    cout<<"added successfully!\n\n";
+
     library<<BookName<<','<<author<<','<<1<<endl;
     library.close();
 }
 
 void showBooks()
 {
+    cin.ignore();
     string BookName,author,avail;
     ifstream library;
     library.open("library.txt");
@@ -41,6 +45,7 @@ void showBooks()
 
 void deletebook()
 {
+    cin.ignore();
     string bookname,author,avail,target;
     bool found = false;
 
@@ -66,7 +71,7 @@ void deletebook()
             tempo.close();
 
         if (found){
-            cout<<"deleted successfully!\n";
+            cout<<"deleted successfully!\n\n";
 
             remove("library.txt");
             rename("temp.txt","library.txt");}
@@ -83,6 +88,7 @@ void deletebook()
 
 void searchbook()
 {
+    cin.ignore();
     string BookName,author,avail,target;
     getline(cin,target);
     ifstream library;
@@ -107,8 +113,32 @@ void searchbook()
 
 int main()
 {
-    //addBook();
-    //deletebook();
-    searchbook();
-    //return 0;
+    int choice;
+    cout<<"welcome to our library! \n";
+
+	do{
+		cout<<"Choose 1 for add a new book\n";
+		cout<<"Choose 2 for show the list\n";
+		cout<<"Choose 3 for search for books\n";
+		cout<<"Choose 4 for delete a book\n";
+		cout<<"Choose 5 for exit\n";
+		cin>>choice;
+
+		switch(choice){
+		case 1:
+			addBook();
+			break;
+		case 2:
+			showBooks();
+			break;
+		case 3:
+			searchbook();
+			break;
+		case 4:
+			deletebook();
+		default:
+			break;
+
+	}
+	}while(choice != 5);
 }
