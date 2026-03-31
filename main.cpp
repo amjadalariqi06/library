@@ -38,6 +38,7 @@ void showBooks()
         }
     }
 }
+
 void deletebook()
 {
     string bookname,author,avail,target;
@@ -79,9 +80,35 @@ void deletebook()
 
 
 }
+
+void searchbook()
+{
+    string BookName,author,avail,target;
+    getline(cin,target);
+    ifstream library;
+    library.open("library.txt");
+    while(getline(library,BookName,',') && getline(library,author,',') && getline(library,avail))
+    {
+        if (BookName == target)
+        {
+            cout<<left<<"Book name : "<<setw(20)<<BookName<<"Author : "<<setw(12)<<author;
+            if (avail == "1")
+            {
+                cout<<"Availability : Yes"<<endl;
+            }
+            else
+            {
+                cout<<"Availability : No"<<endl;
+            }
+        }
+
+    }
+}
+
 int main()
 {
     //addBook();
-    deletebook();
+    //deletebook();
+    searchbook();
     //return 0;
 }
